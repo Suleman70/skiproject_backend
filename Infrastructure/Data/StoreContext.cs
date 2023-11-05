@@ -1,5 +1,6 @@
 
 
+using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,19 @@ namespace Infastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<ProductBrand> ProductBrands {get; set;}
+
+        public DbSet<ProductType> ProductTypes {get; set;}
+
+
+        //Allowing our configuration
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
+        //i think the idea is that we can keep adding more entities here like "Products"
         
 
             
